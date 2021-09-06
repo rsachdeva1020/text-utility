@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 import Navbar from './components/Navbar'
@@ -51,10 +50,10 @@ function App() {
       <div className="container my-3">
         <Switch>
             <Route exact path="/about">
-              <About />
+              <About mode={mode}/>
             </Route>
             <Route exact path="/">
-              <TextForm heading="Enter the text below to analyse" mode={mode} showAlert={showAlert}/>
+              <TextForm heading="Try TextUtils - Word Counter, Character Counter, Remove Extra Spaces" mode={mode} showAlert={showAlert}/>
             </Route>
           </Switch>
       </div>
