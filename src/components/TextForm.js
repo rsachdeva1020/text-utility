@@ -26,10 +26,7 @@ export default function TextForm(props) {
     // }
     
     function copyToClipBoard(){
-        let text = document.getElementById("myBox");
-        text.select();
-        navigator.clipboard.writeText(text.value);
-        document.getSelection().removeAllRanges();      // not to select text
+        navigator.clipboard.writeText(text);
         props.showAlert("Copied to Clipboard", "success")
     }
 
@@ -59,7 +56,7 @@ export default function TextForm(props) {
         </div>
         <div className="container my-4" style={{color : props.mode === 'dark' ? 'white' : 'black'}}>
             <h2> Your Text Summary</h2>
-            <p>{text.split(" ").filter(ele => ele.length !== 0).length} words and {text.length} characters</p>
+            <p>{text.split(/\s+/).filter(ele => ele.length !== 0).length} words and {text.length} characters</p>
             <p>{(0.008 * text.split(" ").filter(ele => ele.length !== 0).length).toFixed(3)} Minutes read</p>
             <h3>Preview</h3>
             <pre>{text.length > 0 ? text : "Enter some text above to preview here"} </pre>
