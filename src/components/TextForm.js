@@ -43,6 +43,7 @@ export default function TextForm(props) {
     // setText("new text")
     return (
     <>
+    <div>
         <div className="container" style={{color : props.mode === 'dark' ? 'white' : 'black'}}>
             <div className="mb-3">
                 <h1 className="mb-20">{props.heading}</h1>
@@ -61,6 +62,7 @@ export default function TextForm(props) {
             <h3>Preview</h3>
             <pre>{text.length > 0 ? text : "Enter some text above to preview here"} </pre>
         </div>
+    </div>
     </>
     )
 }

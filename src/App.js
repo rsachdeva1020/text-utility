@@ -10,8 +10,7 @@ import Navbar from './components/Navbar'
 import TextForm from './components/TextForm'
 import About from './components/About'
 import Alert from './components/Alert';
-
-
+import Footer from './components/Footer';
 
 function App() {
   const [mode, setMode] = useState('light');//will tell whether dark mode is enabled or not
@@ -45,6 +44,7 @@ function App() {
   return (
     <>
     <Router>
+    <div className="mybody">
       <Navbar title = "TextUtils" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert} />
       <div className="container my-3">
@@ -55,8 +55,10 @@ function App() {
             <Route exact path="/">
               <TextForm heading="Try TextUtils - Word Counter, Character Counter, Remove Extra Spaces" mode={mode} showAlert={showAlert}/>
             </Route>
-          </Switch>
+        </Switch>
       </div>
+    </div>
+    <Footer/>
     </Router>
     </>
   );
