@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
 
-
 export default function TextForm(props) {
     function handleUpClick(e){
-        console.log("clicked")
         let newText = text.toUpperCase();
         // setText(e.target.value)
         setText(newText)
@@ -35,12 +33,19 @@ export default function TextForm(props) {
         setText(newText.join(" "))
         props.showAlert("Extra spaces removed", "success")
     }
+    function handleCapitalise(){
+        let newText = text.split(" ");
+        newText = newText.map(ele => ele.charAt(0).toUpperCase() + ele.slice(1))
+        setText(newText.join(" "));
+        props.showAlert("Text Capitalised", "success")
+    }
 
     function handleOnChange(e){
         setText(e.target.value)
     }
+    
     const [text, setText] = useState('');
-    // setText("new text")
+
     return (
     <>
     <div>
@@ -54,13 +59,20 @@ export default function TextForm(props) {
             <button disabled={text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleClearClick}>Clear Text</button>
             <button disabled={text.length === 0} className="btn btn-primary mx-2 my-1" onClick={copyToClipBoard}>Copy to clipboard</button>
             <button disabled={text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
-        </div>
+            <button disabled={text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleCapitalise}>Capitalise Text</button>
+            </div>
         <div className="container my-4" style={{color : props.mode === 'dark' ? 'white' : 'black'}}>
             <h2> Your Text Summary</h2>
             <p>{text.split(/\s+/).filter(ele => ele.length !== 0).length} words and {text.length} characters</p>
             <p>{(0.008 * text.split(" ").filter(ele => ele.length !== 0).length).toFixed(3)} Minutes read</p>
-            <h3>Preview</h3>
-            <pre>{text.length > 0 ? text : "Enter some text above to preview here"} </pre>
+            {/*
+                for(let i = 0;i<text.length;i++) if(text[i] !== " ") counts[text[i]] = counts[text[i]] ? counts[text[i]] + 1 : 1
+                keys = Object.keys(counts)
+            */}
+            {/* text.length > 0 ? keys.forEach((key, index) => console.log(`${key}: ${counts[key]}`)) : " " */}
+            {//<h3>Preview</h3>
+            // <pre>{text.length > 0 ? text : "Enter some text above to preview here"} </pre>
+            }
         </div>
     </div>
     </>
